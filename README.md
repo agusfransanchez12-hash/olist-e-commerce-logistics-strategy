@@ -20,11 +20,11 @@ This project analyzes **Olist’s Brazilian E-Commerce public dataset** to ident
 
 ### 1. Financial Impact & SLA Collapses
 Logistics delays directly harm customer retention and brand equity.
-![Financial Impact](./presentation/slide7.jpg)
+![Financial Impact](./presentation/slide7.png)
 
 ### 2. Geographic Bottlenecks
 High-delay states (**AL, MA, SE**) reach delay rates over **20%**, acting as primary operational friction points.
-![Geographic Bottlenecks](./presentation/slide6.jpg)
+![Geographic Bottlenecks](./presentation/slide6.png)
 
 ---
 
