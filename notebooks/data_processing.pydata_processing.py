@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlite3
-# Cargar los datasets principales
+# Load the main datasets
 orders = pd.read_csv("olist_orders_dataset.csv")
 customers = pd.read_csv("olist_customers_dataset.csv")
 items = pd.read_csv("olist_order_items_dataset.csv")
@@ -10,53 +10,53 @@ products = pd.read_csv("olist_products_dataset.csv")
 sellers = pd.read_csv("olist_sellers_dataset.csv")
 
 # -------------------------------------------------------------
-# 2. Revisar Nulos y Duplicados en CADA una de las tablas
+# 1. Check for nulls and duplicates in EACH of the tables.
 # -------------------------------------------------------------
 
-#print("=== 1. PEDIDOS (orders) ===")
-#print("Nulos:\n", orders.isnull().sum())
-#print("Duplicados:", orders.duplicated().sum())
+print("=== 1. PEDIDOS (orders) ===")
+print("Nulos:\n", orders.isnull().sum())
+print("Duplicados:", orders.duplicated().sum())
 
-#print("\n=== 2. ÍTEMS DE PEDIDOS (items) ===")
-#print("Nulos:\n", items.isnull().sum())
-#print("Duplicados:", items.duplicated().sum())
+print("\n=== 2. ÍTEMS DE PEDIDOS (items) ===")
+print("Nulos:\n", items.isnull().sum())
+print("Duplicados:", items.duplicated().sum())
 
-#print("\n=== 3. PAGOS (payments) ===")
-#print("Nulos:\n", payments.isnull().sum())
-#print("Duplicados:", payments.duplicated().sum())
+print("\n=== 3. PAGOS (payments) ===")
+print("Nulos:\n", payments.isnull().sum())
+print("Duplicados:", payments.duplicated().sum())
 
-#print("\n=== 4. RESEÑAS (reviews) ===")
-#print("Nulos:\n", reviews.isnull().sum())
-#print("Duplicados:", reviews.duplicated().sum())
+print("\n=== 4. RESEÑAS (reviews) ===")
+print("Nulos:\n", reviews.isnull().sum())
+print("Duplicados:", reviews.duplicated().sum())
 
-#print("\n=== 5. PRODUCTOS (products) ===")
-#print("Nulos:\n", products.isnull().sum())
-#print("Duplicados:", products.duplicated().sum())
+print("\n=== 5. PRODUCTOS (products) ===")
+print("Nulos:\n", products.isnull().sum())
+print("Duplicados:", products.duplicated().sum())
 
-#print("\n=== 6. CLIENTES (customers) ===")
-#print("Nulos:\n", customers.isnull().sum())
-#print("Duplicados:", customers.duplicated().sum())
+print("\n=== 6. CLIENTES (customers) ===")
+print("Nulos:\n", customers.isnull().sum())
+print("Duplicados:", customers.duplicated().sum())
 
-#print("\n=== 7. VENDEDORES (sellers) ===")
-#print("Nulos:\n", sellers.isnull().sum())
-#print("Duplicados:", sellers.duplicated().sum())
+print("\n=== 7. VENDEDORES (sellers) ===")
+print("Nulos:\n", sellers.isnull().sum())
+print("Duplicados:", sellers.duplicated().sum())
 # ============================================================
-# 2. LIMPIEZA Y CONVERSIÓN MANUAL COLUMNA POR COLUMNA
+# 2. Manual cleaning and conversion, column by column
 # ============================================================
 
-# Convertimos manualmente cada columna de fecha al formato de texto estándar (ISO) que entiende SQL
+# We manually convert each date column to the standard text format (ISO) recognized by SQL.
 orders['order_purchase_timestamp'] = pd.to_datetime(orders['order_purchase_timestamp']).dt.strftime('%Y-%m-%d %H:%M:%S')
 orders['order_approved_at'] = pd.to_datetime(orders['order_approved_at']).dt.strftime('%Y-%m-%d %H:%M:%S')
 orders['order_delivered_carrier_date'] = pd.to_datetime(orders['order_delivered_carrier_date']).dt.strftime('%Y-%m-%d %H:%M:%S')
 orders['order_delivered_customer_date'] = pd.to_datetime(orders['order_delivered_customer_date']).dt.strftime('%Y-%m-%d %H:%M:%S')
 orders['order_estimated_delivery_date'] = pd.to_datetime(orders['order_estimated_delivery_date']).dt.strftime('%Y-%m-%d %H:%M:%S')
 
-# Rellenamos los nulos de categorías manualmente
+# We fill in the categorical null values ​​manually.
 products['product_category_name'] = products['product_category_name'].fillna('sin_categoria')
 
 
 # ============================================================
-# 3. EXPORTAR A SQLITE (7 TABLAS INDIVIDUALES)
+# 3. EXPORT TO SQLITE (7 INDIVIDUAL TABLES)
 # ============================================================
 conn = sqlite3.connect('olist_db.db')
 
@@ -69,5 +69,3 @@ products.to_sql('products', conn, if_exists='replace', index=False)
 sellers.to_sql('sellers', conn, if_exists='replace', index=False)
 
 conn.close()
-
-print("¡Listo! Base de datos 'olist_db.db' creada con las 7 tablas guardadas individualmente.")
