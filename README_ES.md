@@ -18,11 +18,11 @@ Este proyecto analiza el **dataset público de E-Commerce de Olist en Brasil** p
 
 ### 1. Impacto Financiero y Caída de SLAs
 Los retrasos logísticos dañan directamente la retención de clientes y la reputación de la marca.
-![Impacto Financiero](./slide7_es.png)
+![Impacto Financiero](presentation/slide7_es.png)
 
 ### 2. Cuellos de Botella Geográficos
 Los estados con mayores demoras (**AL, MA, SE**) superan el **20% de tasa de retraso**, siendo los principales puntos de fricción operativa.
-![Cuellos de Botella Geográficos](./slide6_es.png)
+![Cuellos de Botella Geográficos](presentation/slide6_es.png)
 
 ---
 
